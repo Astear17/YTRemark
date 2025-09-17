@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTRemark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+    body {
+        margin: 0;
+        font-family: 'Inter', Segoe UI, sans-serif;
+        font-weight: 700;
+        background: linear-gradient(135deg, #10151c 0%, #232a36 100%);
+        min-height: 100vh;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow-x: hidden;
+        color: #f4f6fb;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    .blur-bg {
+        position: fixed;
+        top: -120px; left: -120px;
+        width: 400px; height: 400px;
+        background: radial-gradient(circle, #ff0000 60%, transparent 100%);
+        filter: blur(80px);
+        z-index: 0;
+        opacity: 0.25;
+        pointer-events: none;
+    }
+    .showcase-card {
+        background: rgba(20, 24, 32, 0.6);
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(30,40,50,0.18);
+        padding: 32px 40px 24px 40px;
+        max-width: 700px;
+        width: 95vw;
+        z-index: 1;
+        text-align: center;
+        backdrop-filter: blur(14px);
+        animation: pop-in 1s cubic-bezier(.4,2,.6,1.2);
+    }
+    @keyframes pop-in {
+        0% {transform: scale(0.9) translateY(60px); opacity: 0;}
+        100% {transform: scale(1) translateY(0); opacity: 1;}
+    }
+    .logo-img {
+    width: 6rem;
+    height: 3.5rem;
+    object-fit: cover;
+    border-radius: 15%;
+    margin-bottom: 8px;
+    border: none;
+    box-shadow: 0 2px 10px rgba(244,63,94,0.15);
+    background: #161b22;
+    display: inline-block;
+    }
+    .showcase-title {
+        font-family: 'Inter', sans-serif;
+        font-weight: 900;
+        font-size: 3rem; 
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+        background: linear-gradient(90deg, #ff7e5f, #ff3b3b 80%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .showcase-desc {
+        font-size: 1.07rem;
+        color: #d3d6e1;
+        margin-bottom: 18px;
+    }
+    .button-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .redirect-button {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        justify-content: flex-start;
+        padding: 20px 25px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background 0.22s, box-shadow 0.22s, transform 0.18s;
+        text-decoration: none;
+        color: #f2f3fa;
+        box-shadow: 0 2px 12px rgba(59,130,246,0.08);
+        position: relative;
+        opacity: 0.97;
+        font-family: 'Inter', Segoe UI, sans-serif;
+    }
+    .redirect-button i {
+        font-size: 1.3em;
+        width: 20px;
+        text-align: center;
+    }
+    .redirect-button:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 6px 22px rgba(59,130,246,0.18);
+    }
+    .snowfall-canvas {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 11;
+        display: block;
+    }
+    .button-header {
+        color: #f2f3fa;
+        font-size: 1.15rem;
+        font-weight: 700;
+        text-align: left;
+        margin-bottom: 8px;
+        margin-top: 20px;
+    }
+    hr {
+        border: none;
+        height: 1px;
+        margin: 25px 0;
+        width: 100%;
+        background: linear-gradient(90deg, #ff7e5f, #ff3b3b 80%);
+    }
+    .color-pc { background: linear-gradient(90deg,#6366f1CC 60%,#38bdf8CC 100%);}
+    .color-pc:hover { background: linear-gradient(90deg,#3730a3CC 70%,#0284c7CC 100%);}
+    .color-android { background: linear-gradient(90deg,#34a853CC 60%,#a8e063CC 100%);}
+    .color-android:hover { background: linear-gradient(90deg,#0c7f3cCC 80%,#6ca535CC 100%);}
+    .color-ios { background: linear-gradient(90deg,#a1a1aaCC 60%,#e4e4e7CC 100%); color: #18181b !important;}
+    .color-ios:hover { background: linear-gradient(90deg,#71717aCC 80%,#a1a1aaCC 100%);}
+    .color-tv { background: linear-gradient(90deg,#ff3b3bCC 70%,#ff7e5fCC 100%);}
+    .color-tv:hover { background: linear-gradient(90deg,#b91c1cCC 80%,#f87171CC 100%);}
+    .color-bonus { background: linear-gradient(90deg,#f59e42CC 60%,#f43f5eCC 100%);}
+    .color-bonus:hover { background: linear-gradient(90deg,#d97706CC 70%,#be185dCC 100%);}
+    </style>
+</head>
+<body>
+    <div class="blur-bg"></div>
+    <canvas class="snowfall-canvas" id="snowfall-canvas"></canvas>
+    <div class="showcase-card">
+        <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1024px-YouTube_full-color_icon_%282017%29.svg.png"
+            alt="Logo"
+            class="logo-img"
+        >
+        <div class="showcase-title">YTRemark</div>
+        <div class="showcase-desc">
+            Tổng hợp các giải pháp YouTube chặn quảng cáo trên các nền tảng
+        </div>
+        <hr>
+        
+        <h3 class="button-header">PC (Trình duyệt)</h3>
+        <div class="button-section">
+            <a href="https://chromewebstore.google.com/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" target="_blank" class="redirect-button color-pc">
+                <i class="fa-solid fa-shield-halved"></i> uBlock Origin (Extension Manifest V2)
+            </a>
+            <a href="https://brave.com/download/" target="_blank" class="redirect-button color-pc">
+                <i class="fa-solid fa-globe"></i> Brave - built in adblocker
+            </a>
+            <a href="https://coccoc.com/" target="_blank" class="redirect-button color-pc">
+                <i class="fa-solid fa-globe"></i> Cốc Cốc - built in adblocker
+            </a>
+        </div>
+        <hr>
+
+        <h3 class="button-header">Android</h3>
+        <div class="button-section">
+            <a href="https://github.com/ReVanced/revanced-manager/releases/download/v1.25.1/revanced-manager-1.25.1.apk" target="_blank" class="redirect-button color-android">
+                <i class="fa-brands fa-android"></i> ReVanced Manager
+            </a>
+            <a href="https://releases.grayjay.app/app-universal-release.apk" target="_blank" class="redirect-button color-android">
+                <i class="fa-brands fa-android"></i> Grayjay Universal
+            </a>
+            <a href="https://releases.grayjay.app/app-x86_64-release.apk" target="_blank" class="redirect-button color-android">
+                <i class="fa-brands fa-android"></i> Grayjay x86_64 (Android 64bit)
+            </a>
+            <a href="https://releases.grayjay.app/app-x86-release.apk" target="_blank" class="redirect-button color-android">
+                <i class="fa-brands fa-android"></i> Grayjay x86 (Android 32bit)
+            </a>
+            <a href="https://archive.newpipe.net/fdroid/repo/NewPipe_v0.28.0.apk" target="_blank" class="redirect-button color-android">
+                <i class="fa-brands fa-android"></i> Newpipe
+            </a>
+            <a href="https://d2zfax1dcjhc44.cloudfront.net/release2/snaptube/gitlab/apk/com.snaptube.premium/7.47.0.74750110/Click_me_to_install_SnapTube_tube_snaptubemedia.apk" target="_blank" class="redirect-button color-android">
+                <i class="fa-brands fa-android"></i> Snaptube
+            </a>
+        </div>
+        <hr>
+
+        <h3 class="button-header">iOS / iPadOS</h3>
+        <div class="button-section">
+            <a href="https://github.com/Astear17/YTRemark/releases/download/1.0/YouTube_v20.15.1_Premium_iOS_15.ipa" target="_blank" class="redirect-button color-ios">
+                <i class="fa-brands fa-youtube"></i> YouTube OLED - iOS 15
+            </a>
+            <a href="https://github.com/Astear17/YTRemark/releases/download/1.0/YouTube_v20.36.3_Premium_iOS_16.ipa" target="_blank" class="redirect-button color-ios">
+                <i class="fa-brands fa-youtube"></i> YouTube OLED - iOS 16
+            </a>
+            <a href="https://github.com/Astear17/YTRemark/releases/download/1.0/YTMusicUltimate_v7.21.1_iOS_15.ipa" target="_blank" class="redirect-button color-ios">
+                <i class="fa-solid fa-music"></i> YTMusicUltimate - iOS 15
+            </a>
+            <a href="https://github.com/Astear17/YTRemark/releases/download/1.0/YTMusicUltimate_v8.37.3_iOS_16.ipa" target="_blank" class="redirect-button color-ios">
+                <i class="fa-solid fa-music"></i> YTMusicUltimate - iOS 16
+            </a>
+        </div>
+        <hr>
+
+        <h3 class="button-header">Smart TV / TV Box</h3>
+        <div class="button-section">
+            <a href="https://kutt.it/stn_stable" target="_blank" class="redirect-button color-tv">
+                <i class="fa-solid fa-tv"></i> SmartTube Stable - Android TV
+            </a>
+             <a href="https://github.com/reisxd/TizenTube" target="_blank" class="redirect-button color-tv">
+                <i class="fa-solid fa-tv"></i> TizenTube - Samsung Tizen
+            </a>
+            <a href="https://github.com/reisxd/TizenTubeCobalt/releases/download/v1.0.2/cobalt-arm.apk" target="_blank" class="redirect-button color-tv">
+                <i class="fa-brands fa-android"></i> TizenTubeCobalt - Android TV
+            </a>
+            <a href="https://github.com/webosbrew/youtube-webos" target="_blank" class="redirect-button color-tv">
+                <i class="fa-solid fa-tv"></i> YouTube WebOS - LG WebOS
+            </a>
+            <a href="https://github.com/LucifersCircle/WebOS-Token-Refresh-App" target="_blank" class="redirect-button color-bonus">
+                <i class="fa-solid fa-arrows-rotate"></i> WebOS Token Refresh (cho TV LG ko root tv được)
+            </a>
+            <a href="https://file.garden/aGfhNpTdVktTM-Pp/mutube.ipa" target="_blank" class="redirect-button color-ios">
+                <i class="fa-brands fa-apple"></i> Mutube IPA - Apple TV tvOS
+            </a>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('snowfall-canvas');
+        const ctx = canvas.getContext('2d');
+        let snowflakes = [];
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        function createSnowflake() {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * -canvas.height,
+                r: Math.random() * 2.2 + 1.7,
+                d: Math.random() * 1.1 + 0.7,
+                a: Math.random() * Math.PI * 2
+            };
+        }
+        function drawSnowflakes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(255,255,255,0.95)';
+            ctx.beginPath();
+            for (let i = 0; i < snowflakes.length; i++) {
+                const f = snowflakes[i];
+                ctx.moveTo(f.x, f.y);
+                ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+            }
+            ctx.fill();
+            moveSnowflakes();
+        }
+        function moveSnowflakes() {
+            for (let i = 0; i < snowflakes.length; i++) {
+                let f = snowflakes[i];
+                f.y += Math.pow(f.d, 2) + 0.45;
+                f.x += Math.sin(f.a) * 0.7;
+                f.a += 0.01;
+                if (f.y > canvas.height) {
+                    snowflakes[i] = createSnowflake();
+                    snowflakes[i].y = 0;
+                }
+            }
+        }
+        function snowfallLoop() {
+            drawSnowflakes();
+            requestAnimationFrame(snowfallLoop);
+        }
+        function initSnowflakes() {
+            snowflakes = [];
+            let flakeCount = Math.floor(canvas.width / 40) + 10;
+            for (let i = 0; i < flakeCount; i++) {
+                snowflakes.push(createSnowflake());
+            }
+        }
+        window.addEventListener('resize', initSnowflakes);
+        initSnowflakes();
+        snowfallLoop();
+    </script>
+</body>
+</html>
