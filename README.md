@@ -1,5 +1,4 @@
 # YTRemark
-Just say no to ads from YouTube, for all devices
 Tổng hợp các giải pháp YouTube chặn quảng cáo trên các nền tảng
 1. PC: bất kì trình duyệt nào hỗ trợ tiện ích (extension) manifest v2 cài Ublock Origin là xong
 https://github.com/gorhill/uBlock
@@ -11,7 +10,6 @@ https://github.com/gorhill/uBlock
 - iOS:
 + YTLite: https://github.com/dayanch96/YTLite
 + YTLitePlus: https://github.com/YTLitePlus/YTLitePlus
-- Nintendo 3DS: FourthTube. Hỗ trợ nghe trong nền khi gập màn nếu cắm jack 3.5mm
 3. TV
 - Android TV:
 + SmartTube (ảnh 5): https://smarttubeapp.github.io/
