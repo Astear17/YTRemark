@@ -1,10 +1,10 @@
 # YTRemark
 Tổng hợp các giải pháp YouTube chặn quảng cáo trên các nền tảng
-1. PC: bất kì trình duyệt nào hỗ trợ tiện ích (extension) manifest v2 cài Ublock Origin là xong
+1. PC: bất kì trình duyệt nào hỗ trợ tiện ích (extension) manifest v2 cài uBlock Origin là xong
 https://github.com/gorhill/uBlock
 2. Thiết bị di động
 - Android:
-+ Revanced: https://revanced.app/
++ Revanced: https://revanced.app/ - https://vanced.to/
 + Newpipe: https://newpipe.net/
 + Grayjay: https://grayjay.app/
 - iOS:
